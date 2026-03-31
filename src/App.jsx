@@ -1,5 +1,5 @@
 import react, { useState, useEffect } from "react";
-
+import ImageCard from "./components/ImageCard";
 function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,17 @@ function App() {
   }, []);
   return (
     <>
-      <h1 className="text-6xl">Vite + React</h1>
+      <div className="container mx-auto px-4 py-8">
+        {loading ? (
+          <h1 className="text-2xl font-bold text-center">Loading...</h1>
+        ) : (
+          <div className="grid grid-cols-3 gap-4">
+            {images.map((image) => (
+              <ImageCard key={image.id} image={image} />
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }
